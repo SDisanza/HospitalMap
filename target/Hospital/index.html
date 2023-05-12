@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title>Hospital Map of Italy</title>
+
+    <link rel = "stylesheet" href = "style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+          integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+          crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+            crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+
+</head>
+<body id="body">
+<header id="header">
+    <h1>Hospital Map of Italy</h1>
+    <div>
+        <button id="near">Nearest H</button>
+        <button id="zoomOutBtn">Zoom Out</button>
+        <button id="zoomInBtn">Zoom In</button>
+    </div>
+</header>
+<div id="loader" class="loader">
+    <i class="fas fa-spinner fa-spin"></i>
+</div>
+
+<div id="container">
+    <div id="map"></div>
+    <div id="control">
+    </div>
+    <p id="text"></p>
+<script>$('#loader').hide();</script>
+</div>
+<script src = "usage.js"></script>
+</body>
+</html>

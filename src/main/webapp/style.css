@@ -1,0 +1,61 @@
+#header
+{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 99%;
+}
+
+#header h1
+{
+    color: white;
+    margin: 0;
+    font-size: 24px;
+}
+
+#map
+{
+    height: 90vh;
+    width: 65%;
+    display: inline-block;
+    float: left;
+}
+
+#body
+{
+    background: linear-gradient(90deg, #B31E1E 0%, #141286 100%);
+}
+
+#text
+{
+    color: yellow;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    padding: 10px;
+    margin: 20px;
+}
+
+#control
+{
+    color: green;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    margin: 20px;
+}
+
+.loader
+{
+    color: saddlebrown;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.fa-spinner
+{
+    font-size: 40px;
+}
