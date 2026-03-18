@@ -11,11 +11,15 @@ let osrID = ('5b3ce3597851110001cf6248799a998e587748709bc8404b32f5bf5c');
 //Carico la mappa e la visualizzo
 const map = L.map('map').setView([41.9, 12.6], 6);
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+/*L.tileLayer('https://tile.openstreetmap.org/{zoom}/{x}/{y}.png',
     {
         maxZoom: 15,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+    }).addTo(map);*/
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap'
+}).addTo(map);
 
 //Dopodichè mi localizza automaticamente
 map.locate({setView: true, maxZoom: 11, timeout: 30000});
@@ -101,6 +105,7 @@ function onLocationFound(e)
     latlngUser = e.latlng;
     radius = e.accuracy;
 
+
     marker.bindPopup("Sei qui!").openPopup();
     L.circle(latlngUser,
         {
@@ -128,12 +133,13 @@ function drawRoadRoute()
 
         // Chiama l'API di routing OpenStreetRoute per calcolare la distanza stradale
         let url = 'https://api.openrouteservice.org/v2/directions/driving-car?api_key='+ osrID + '&start='
-            + latlngUser.lng + ',' + latlngUser.lat + '&end=' + latlngOspedale.lng + ',' + latlngOspedale.lat;
+            + latlngUser.lng + ',' + latlngUser.lat + '&end=' + latlngOspedale.lng + ',' + latlngOspedale.lat + '&language=it';
 
         $.getJSON(url, function(data)
         {
             // Aggiungi la distanza stradale all'array degli ospedali e delle distanze
             ospedaliDistanze.push({coordinate: coordinate, distanza: data.features[0].properties.segments[0].distance});
+            console.log(ospedaliDistanze);
 
             // Se ha calcolato la distanza per tutti gli ospedali, seleziona quello più vicino e visualizza a schermo
             if (ospedaliDistanze.length === hArray.length) {
@@ -198,7 +204,10 @@ function openStreetRouteDraw()
             [
             [latlngUser.lng, latlngUser.lat],
             [ospedalePiuVicino.coordinate[1], ospedalePiuVicino.coordinate[0]]
-            ]
+            ],
+        "language": "it",
+        "units": "m",
+        "instructions": true
     });
     request.send(body);
 }
@@ -214,8 +223,9 @@ function search()
             found = [hCompelte[i].nome, hCompelte[i].comune].join();
         }
     }
+
 /*dato che non sempre c'è il nome dell'ospedale e come primo carattere c'è una virgola
-* che è proprio brutta la levo*/
+che è proprio brutta la levo*/
 
     if (found.charAt(0) === ',')
     {
